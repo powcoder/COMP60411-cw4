@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Exam CourseCode="Math101" Year="2020" PercentageToPass="50"
+    xmlns="http://www.cs.man.ac.uk/~sattler/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.cs.man.ac.uk/~sattler/ examSchema.xsd">
+    <AnswerBooks>
+        <AnswerBook studentID="S12344">
+            <Answer QuestionID="Q1" Value="Not Answered"/>
+            <Answer QuestionID="Q2" Value="Not Answered"/>
+            <Answer QuestionID="Q3" Value="Not Answered"/>
+            <Answer QuestionID="Q4" Value="Not Answered"/>
+            <Answer QuestionID="Q5" Value="Not Answered"/>
+            <Answer QuestionID="Q6" Value="Not Answered"/>
+        </AnswerBook>
+        <AnswerBook studentID="S12345">
+            <Answer QuestionID="Q1" Value="1000"/>
+            <Answer QuestionID="Q2" Value="100"/>
+            <Answer QuestionID="Q3" Value="5"/>
+            <Answer QuestionID="Q4" Value="2"/>
+            <Answer QuestionID="Q5" Value="Not Answered"/>
+            <Answer QuestionID="Q6" Value="Not Answered"/>
+        </AnswerBook>
+        <AnswerBook studentID="s12346">
+            <Answer QuestionID="Q1" Value="Not Answered"/>
+            <Answer QuestionID="Q4" Value="2"/>
+            <Answer QuestionID="Q2" Value="7.5"/>
+            <Answer QuestionID="Q3" Value="7"/>
+            <Answer QuestionID="Q5" Value="Not Answered"/>
+            <Answer QuestionID="Q6" Value="Not Answered"/>
+        </AnswerBook>
+        <AnswerBook studentID="s12348">
+            <Answer QuestionID="Q1" Value="32"/>
+            <Answer QuestionID="Q2" Value="7.5"/>
+            <Answer QuestionID="Q3" Value="19"/>
+            <Answer QuestionID="Q4" Value="2"/>
+            <Answer QuestionID="Q5" Value="1"/>
+            <Answer QuestionID="Q6" Value="16"/>
+        </AnswerBook>
+        <AnswerBook studentID="S12347">
+            <Answer QuestionID="Q1" Value="32"/>
+            <Answer QuestionID="Q2" Value="7"/>
+            <Answer QuestionID="Q3" Value="19"/>
+            <Answer QuestionID="Q4" Value="2"/>
+            <Answer QuestionID="Q5" Value="1"/>
+            <Answer QuestionID="Q6" Value="15"/>
+        </AnswerBook>
+    </AnswerBooks>
+    <Questions>
+        <Question id="Q1" marks="3" level="3">
+            <Expression>
+                <description/>
+                <times>
+                    <int value="2"/>
+                    <int value="2"/>
+                    <int value="2"/>
+                    <int value="2"/>
+                    <int value="2"/>
+                </times>
+            </Expression>
+            <Feedback answerCorrect="t">This was a really difficult question because it was very
+                long: well done!</Feedback>
+            <Feedback answerCorrect="f">This was a really difficult question because it was very
+                long - check your working again</Feedback>
+        </Question>
+        <Question id="Q2" marks="2" level="3">
+            <Expression>
+                <description/>
+                <times>
+                    <dec value="2.5"/>
+                    <dec value="3"/>
+                </times>
+            </Expression>
+    
+            <Feedback answerCorrect="t">This was a really difficult question: well done!</Feedback>
+            <Feedback answerCorrect="f">This was a really difficult question - check your working
+                again and your understanding of decimal numbers.</Feedback>
+        </Question>
+        <Question id="Q3" level="2" marks="2">
+            <Expression>
+                <description/>
+                <plus>
+                    <int value="4"/>
+                    <int value="3"/>
+                    <times>
+                        <int value="4"/>
+                        <int value="3"/>
+                    </times>
+                </plus>
+            </Expression>
+
+            <Feedback answerCorrect="t">Well done!</Feedback>
+            <Feedback answerCorrect="f">Check your working again and your understanding of
+                nesting.</Feedback>
+        </Question>
+        <Question id="Q4" level="1">
+            <Expression>
+                <description/>
+                <plus>
+                    <int value="1"/>
+                    <int value="1"/>
+                </plus>
+            </Expression>
+            <Feedback answerCorrect="t">Well done!</Feedback>
+            <Feedback answerCorrect="f">Please pay more attention next time.</Feedback>
+        </Question>
+        <Question id="Q5" level="1">
+            <Expression>
+                <description/>
+                <int value="1"/>
+            </Expression>
+ 
+            <Feedback answerCorrect="t">Well done!</Feedback>
+            <Feedback answerCorrect="f">Please pay more attention next time.</Feedback>
+        </Question>
+        <Question id="Q6" level="2" marks="4">
+        <Expression>
+            <description/>
+            <minus>
+                <plus>
+                    <int value="2"/>
+                    <int value="3"/>
+                    <times>
+                        <int value="5"/>
+                        <minus>
+                            <int value="6"/>
+                            <int value="3"/>
+                        </minus>
+                    </times>
+                </plus>
+                <int value="4"/>
+            </minus>
+        </Expression>
+        
+        <Feedback answerCorrect="t">Well done!</Feedback>
+        <Feedback answerCorrect="f">Please pay more attention next time.</Feedback>
+    </Question>
+    </Questions>
+</Exam>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  RelaxNG supports only very simple datatype: text. If you want more complex ones, 
+  you can 'import' them from XML Schema (another XML schema language) by including the following line: 
+  
+-->
+<!--
+  
+  with this line, we could have written 
+  
+   int-description = element int { attribute value { xsd:integer }, empty }
+  
+  and suitable validating parsers would have understood this, i.e., rejected elements like <int value="a"/> 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <!-- An expression can contain comments -->
+  <xs:element name="Expression">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="description"/>
+        <xs:element ref="expr-description"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- An expression is either a plus, times, minus, or division, or a number, i.e., an int or a dec. -->
+  <xs:element name="expr-description" abstract="true"/>
+  <!-- Division is a *binary* operation (takes exactly 2 expressions) -->
+  <xs:element name="division" substitutionGroup="expr-description">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="expr-description"/>
+        <xs:element ref="expr-description"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- Note that times takes at least 1 expression -->
+  <xs:element name="plus" substitutionGroup="expr-description">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="expr-description"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- Note that times takes at least 2 expressions -->
+  <xs:element name="times" substitutionGroup="expr-description">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="expr-description"/>
+        <xs:element maxOccurs="unbounded" ref="expr-description"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- Note that minus is a *unary* or *binary* operation (takes 1 or 2 expression) -->
+  <xs:element name="minus" substitutionGroup="expr-description">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="2" ref="expr-description"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- Comments are text interleaved with <i>- and <b>-elements -->
+  <xs:element name="description">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="i"/>
+        <xs:element ref="b"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="i" type="xs:string"/>
+  <xs:element name="b" type="xs:string"/>
+  <!--
+     Ints and decs are empty elements. I use an attribute
+    for their value and xsd  with facets to restrict their values. 
+  -->
+  <xs:element name="int" substitutionGroup="expr-description">
+    <xs:complexType>
+      <xs:attribute name="value" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:integer">
+            <xs:minInclusive value="-1000"/>
+            <xs:maxInclusive value="1000"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dec" substitutionGroup="expr-description">
+    <xs:complexType>
+      <xs:attribute name="value" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="-1000"/>
+            <xs:maxInclusive value="1000"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

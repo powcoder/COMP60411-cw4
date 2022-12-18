@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+  targetNamespace="http://www.cs.man.ac.uk/~sattler/"
+  xmlns="http://www.cs.man.ac.uk/~sattler/"
+  elementFormDefault="qualified">
+  
+  <xs:include schemaLocation="calc2.xsd"></xs:include>
+  
+  <xs:element name="QuestionList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="Question"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="Question">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Expression"/>
+        <xs:element ref="Goal"/>
+        <xs:element maxOccurs="unbounded" ref="Feedback"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+      <xs:attribute name="level" use="required" type="xs:integer"/>
+      <xs:attribute name="marks" type="xs:integer" default="1"/>
+    </xs:complexType>
+  </xs:element>
+ 
+  <xs:element name="Goal">
+    <xs:complexType/>
+  </xs:element>
+  
+  <xs:element name="Feedback">
+    <xs:complexType mixed="true">
+      <xs:attribute name="answerCorrect" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

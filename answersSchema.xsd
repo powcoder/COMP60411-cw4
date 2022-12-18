@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+  targetNamespace="http://www.cs.man.ac.uk/~sattler/"
+  xmlns="http://www.cs.man.ac.uk/~sattler/"
+  xmlns:h="http://www.cs.man.ac.uk/~sattler/"
+  elementFormDefault="qualified">
+
+  <xs:element name="AnswerBook">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="Answer"/>
+      </xs:sequence>
+      <xs:attribute name="studentID" use="required" type="xs:ID"/>
+    </xs:complexType>
+    
+    <xs:unique name="only1AnswerPerQuestion">
+      <xs:selector xpath="h:Answer"></xs:selector>
+      <xs:field xpath="@QuestionID"></xs:field>
+    </xs:unique>
+  </xs:element>
+  
+  <xs:element name="Answer">
+    <xs:complexType>
+      <xs:attribute name="Value" use="required" type="AnswerValue"/>
+      <xs:attribute name="QuestionID" use="required" type="xs:IDREF"/>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:simpleType name="NotAnsweredValue">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Not Answered"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="AnsweredValue">
+    <xs:restriction base="xs:decimal">
+      <xs:fractionDigits value="1"/>
+    </xs:restriction>
+  </xs:simpleType> 
+  
+  <xs:simpleType name="AnswerValue">
+    <xs:union memberTypes="AnsweredValue NotAnsweredValue"/>
+  </xs:simpleType>
+  
+</xs:schema>
